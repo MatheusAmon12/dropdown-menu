@@ -1,26 +1,46 @@
-import { ChevronDown } from "lucide-react";
-import { Button } from "./ui/button";
 import { Sheet, SheetContent } from "./ui/sheet";
+import HamburguerMenuItem from "./hamburguer-menu-item";
 
 const HamburguerMenu = () => {
+
     return ( 
         <Sheet open>
-            <SheetContent className="flex flex-col items-start">     
-                <Button variant="ghost" className="gap-2 text-lg">
-                    Projetos
-                    <ChevronDown size={14} />
-                </Button>
-            
-                <Button variant="ghost" className="gap-2 text-lg">
-                    Social
-                    <ChevronDown size={14} />
-                </Button>
-            
-            
-                <Button variant="ghost" className="gap-2 text-lg">
-                    Certificações
-                    <ChevronDown size={14} />
-                </Button>
+            <SheetContent className="flex flex-col items-start">    
+                <HamburguerMenuItem
+                    title="Projetos"
+                    items={
+                        [
+                            "Apresentação Pessoal",
+                            "Layout Responsivo",
+                            "Formulário de Contato",
+                            "Galeria de Imagens",
+                        ]
+                    }
+                />
+
+                <HamburguerMenuItem
+                    title="Social"
+                    items={
+                        [
+                            "LinkedIn",
+                            "GitHub",
+                            "Behance",
+                        ]
+                    }
+                />
+
+                <HamburguerMenuItem
+                    title="Certificações"
+                    items={
+                        [
+                            "Formação FullStack JS",
+                            "Imersão Frontend",
+                            "Imersão MultiCloud",
+                            "Figma",
+                            "Photoshop",
+                        ]
+                    }
+                />
             </SheetContent>
         </Sheet>
      );
