@@ -1,30 +1,87 @@
-# React + TypeScript + Vite
+# Dropdown Menu
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O objetivo desse projeto foi desenvolver um dropdown menu. A minha solução consistuiu em construir um header que simula o topo de um site contendo diferentes itens nesse componente. O projeto foi desenvolvido utilizando as tecnologias [Vite](https://vitejs.dev/), [React](https://reactjs.org/), [TypeScript](https://www.typescriptlang.org/), [Tailwind CSS](https://tailwindcss.com/) e o [Shadcn](https://ui.shadcn.com/). 
 
-Currently, two official plugins are available:
+## Observações iniciais
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Os botões são apenas figurativos, ou seja, não possuem função estabelecida. Pois o intuito é apenas apresentá-los como um dropdown menu ao clicar.
 
-## Expanding the ESLint configuration
+## Como rodar na minha máquina?
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Clone o repositório no seu computador: `git clone https://github.com/MatheusAmon12/dropdown-menu`
+- Execute `npm intall`
+- Rode `npm run dev`
+- Seu `package.json` deve estar parecido com este:
+  ```json
+  {
+    "dependencies": {
+      "@radix-ui/react-dialog": "^1.0.5",
+      "@radix-ui/react-slot": "^1.0.2",
+      "class-variance-authority": "^0.7.0",
+      "clsx": "^2.1.1",
+      "lucide-react": "^0.378.0",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "tailwind-merge": "^2.3.0",
+      "tailwindcss-animate": "^1.0.7"
+    },
+    "devDependencies": {
+      "@types/node": "^20.12.12",
+      "@types/react": "^18.2.66",
+      "@types/react-dom": "^18.2.22",
+      "@typescript-eslint/eslint-plugin": "^7.2.0",
+      "@typescript-eslint/parser": "^7.2.0",
+      "@vitejs/plugin-react": "^4.2.1",
+      "autoprefixer": "^10.4.19",
+      "eslint": "^8.57.0",
+      "eslint-plugin-react-hooks": "^4.6.0",
+      "eslint-plugin-react-refresh": "^0.4.6",
+      "postcss": "^8.4.38",
+      "tailwindcss": "^3.4.3",
+      "typescript": "^5.2.2",
+      "vite": "^5.2.0"
+    }
+  }
 
-- Configure the top-level `parserOptions` property like this:
+  ```
+- Finalizado!
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Estrutura do projeto
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- `public`: arquivos de imagens
+- `src`: reúne as peças necessárias para compor o layout do projeto
+  - `components`: reúne os componentes do projeto
+    - `ui`: omponentes provenientes do Shadcn
+    - `hamburguer-menu.tsx`: renderiza o menu hamburguer e gerencia seu estado de abertura. Esse componente só é exibido em telas menores que 1024px. Vide a lógica responsável:
+    <br/><br/>
+      ```js
+      const [windowSize, setWindowSize] = useState(window.innerWidth);
+      useEffect(() => {
+          const handleResize = () => setWindowSize(window.innerWidth);
+
+          window.addEventListener('resize', handleResize);
+
+          return () => window.removeEventListener('resize', handleResize);
+      }, []);
+      ```
+    <br/><br/>
+    - `header.tsx`: renderiza os componentes `<Menu />` e `<HamburguerMenu />` que compõem o heder do projeto
+    - `menu-items.tsx`: renderiza os itens do menu dinamicamente. Recebe como props o `title` (é o valor de cada item do menu), `items` (uma lista de subitens que são renderizados nas `<li>`), `isOpen` (contralador do estado do dropdown), `handleToggleMenu` (função que altera o estado do dropdown). Essas props são do tipo:
+    <br/><br/>
+      ```js
+      title: string;
+      items: string[];
+      isOpen: boolean;
+      handleToggleMenu: () => void;
+      ```
+    <br/><br/>
+    - `menu.tsx`: renderiza os itens do menu
+  - `lib`: bibliotecas e métodos auxiliares
+    - `utils`: métodos auxiliares do Shadcn
+  - `App.tsx`: renderiza o `Header`e define o background do projeto
+  - `index.css`: estilos globais
+  - `main.tsx`: arquivo root
+
+## Como me colocar dentro do projeto?
+
+A partir do diretório `src/App.tsx` você terá acesso ao componente `Header` que renderiza todo conteúdo do dropdown menu. A partir dele você tem acesso aos demais componentes.
