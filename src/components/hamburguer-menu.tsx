@@ -14,7 +14,7 @@ const HamburguerMenu = () => {
         <div className="lg:hidden">
             <Sheet>
                 <SheetTrigger>
-                    <MenuIcon className="h-6 w-6" />
+                    <MenuIcon color="white" className="h-6 w-6" />
                 </SheetTrigger>
                 <SheetContent className="flex flex-col items-start">    
                     <MenuItem

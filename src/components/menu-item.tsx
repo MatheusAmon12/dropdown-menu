@@ -18,7 +18,7 @@ const MenuItem = ({ title, items, isOpen, handleToggleMenu }: MenuItemProps) => 
             </Button>
             {
                 isOpen && (
-                    <ul className="relative lg:absolute lg:top-8 left-auto">
+                    <ul className="relative lg:absolute lg:top-10 lg:bg-white lg:text-black lg:rounded-md left-auto">
                         {
                             items.map((item, index) => (
                                 <li key={index}>

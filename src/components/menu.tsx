@@ -9,7 +9,7 @@ const Menu = () => {
     }
 
     return ( 
-        <menu className="hidden lg:flex">
+        <menu className="hidden lg:flex lg:text-white">
             <MenuItem
                 title="Projetos"
                 items={

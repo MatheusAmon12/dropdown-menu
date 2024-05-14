@@ -16,6 +16,10 @@ export default {
         "2xl": "1400px",
       },
     },
+    backgroundImage: {
+      "tech": "url('/background.jpg')",
+      "tech-sm": "url('/background-sm.jpg')",
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
