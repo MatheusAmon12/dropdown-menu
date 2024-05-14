@@ -1,31 +1,27 @@
 import { ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
-import { useState } from "react";
 
-interface HamburguerMenuItemProps {
+interface MenuItemProps {
     title: string,
-    items: string[]
+    items: string[],
+    isOpen: boolean,
+    handleToggleMenu: () => void,
+
 }
 
-const HamburguerMenuItem = ({ title, items }: HamburguerMenuItemProps) => {
-    const [openMenu, setOpenMenu] = useState(false);
-
-    const handleToggleMenu = () => {
-        setOpenMenu(!openMenu);
-    }
-
+const MenuItem = ({ title, items, isOpen, handleToggleMenu }: MenuItemProps) => {
     return ( 
-        <section>
+        <section className="lg:relative">
             <Button variant="ghost" className="gap-2 text-lg" onClick={handleToggleMenu}>
                 {title}
                 <ChevronDown size={14} />
             </Button>
             {
-                openMenu && (
-                    <ul className={`relative top-0 left-2`}>
+                isOpen && (
+                    <ul className="relative lg:absolute lg:top-8 left-auto">
                         {
-                            items.map((item) => (
-                                <li>
+                            items.map((item, index) => (
+                                <li key={index}>
                                     <Button variant="ghost">{item}</Button>
                                 </li>
                             ))
@@ -37,4 +33,4 @@ const HamburguerMenuItem = ({ title, items }: HamburguerMenuItemProps) => {
      );
 }
  
-export default HamburguerMenuItem;
+export default MenuItem;

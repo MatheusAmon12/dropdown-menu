@@ -1,16 +1,23 @@
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import HamburguerMenuItem from "./hamburguer-menu-item";
+import MenuItem from "./menu-item";
 import { MenuIcon } from "lucide-react";
+import { useState } from "react";
 
 const HamburguerMenu = () => {
+    const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null);
+
+    const handleToggleMenu = (index: number) => {
+        setOpenMenuIndex((prevIndex) => prevIndex === index ? null : index);
+    }
+
     return ( 
-        <>
+        <div className="lg:hidden">
             <Sheet>
                 <SheetTrigger>
                     <MenuIcon className="h-6 w-6" />
                 </SheetTrigger>
                 <SheetContent className="flex flex-col items-start">    
-                    <HamburguerMenuItem
+                    <MenuItem
                         title="Projetos"
                         items={
                             [
@@ -20,9 +27,11 @@ const HamburguerMenu = () => {
                                 "Galeria de Imagens",
                             ]
                         }
+                        isOpen={openMenuIndex === 0}
+                        handleToggleMenu={() => handleToggleMenu(0)}
                     />
 
-                    <HamburguerMenuItem
+                    <MenuItem
                         title="Social"
                         items={
                             [
@@ -31,9 +40,11 @@ const HamburguerMenu = () => {
                                 "Behance",
                             ]
                         }
+                        isOpen={openMenuIndex === 1}
+                        handleToggleMenu={() => handleToggleMenu(1)}
                     />
 
-                    <HamburguerMenuItem
+                    <MenuItem
                         title="Certificações"
                         items={
                             [
@@ -44,10 +55,12 @@ const HamburguerMenu = () => {
                                 "Photoshop",
                             ]
                         }
+                        isOpen={openMenuIndex === 2}
+                        handleToggleMenu={() => handleToggleMenu(2)}
                     />
                 </SheetContent>
             </Sheet>
-        </>
+        </div>
      );
 }
  

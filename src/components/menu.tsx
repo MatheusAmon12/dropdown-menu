@@ -1,29 +1,56 @@
-import { Button } from "./ui/button";
-import { ChevronDown } from "lucide-react";
+import { useState } from "react";
+import MenuItem from "./menu-item";
 
 const Menu = () => {
+    const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null);
+
+    const handleToggleMenu = (index: number) => {
+        setOpenMenuIndex((prevIndex) => prevIndex === index ? null : index);
+    }
+
     return ( 
-        <menu className="hidden">
-            <ul className="flex items-center">
-                <li>
-                    <Button variant="ghost" className="gap-2 text-lg">
-                        Projetos
-                        <ChevronDown size={14} />
-                    </Button>
-                </li>
-                <li>
-                    <Button variant="ghost" className="gap-2 text-lg">
-                        Social
-                        <ChevronDown size={14} />
-                    </Button>
-                </li>
-                <li>
-                    <Button variant="ghost" className="gap-2 text-lg">
-                        Certificações
-                        <ChevronDown size={14} />
-                    </Button>
-                </li>
-            </ul>
+        <menu className="hidden lg:flex">
+            <MenuItem
+                title="Projetos"
+                items={
+                    [
+                        "Apresentação Pessoal",
+                        "Layout Responsivo",
+                        "Formulário de Contato",
+                        "Galeria de Imagens",
+                    ]
+                }
+                isOpen={openMenuIndex === 0}
+                handleToggleMenu={() => handleToggleMenu(0)}
+            />
+
+            <MenuItem
+                title="Social"
+                items={
+                    [
+                        "LinkedIn",
+                        "GitHub",
+                        "Behance",
+                    ]
+                }
+                isOpen={openMenuIndex === 1}
+                handleToggleMenu={() => handleToggleMenu(1)}
+            />
+
+            <MenuItem
+                title="Certificações"
+                items={
+                    [
+                        "Formação FullStack JS",
+                        "Imersão Frontend",
+                        "Imersão MultiCloud",
+                        "Figma",
+                        "Photoshop",
+                    ]
+                }
+                isOpen={openMenuIndex === 2}
+                handleToggleMenu={() => handleToggleMenu(2)}
+            />
         </menu>
      );
 }
