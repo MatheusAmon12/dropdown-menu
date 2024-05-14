@@ -22,7 +22,7 @@ const MenuItem = ({ title, items, isOpen, handleToggleMenu }: MenuItemProps) => 
                         {
                             items.map((item, index) => (
                                 <li key={index}>
-                                    <Button variant="ghost" className="w-full">{item}</Button>
+                                    <Button variant="ghost" className="w-full flex justify-start">{item}</Button>
                                 </li>
                             ))
                         }
