@@ -1,3 +1,4 @@
+import HamburguerMenu from "./hamburguer-menu";
 import Menu from "./menu";
 
 const Header = () => {
@@ -5,6 +6,7 @@ const Header = () => {
         <header className="flex items-center justify-between px-10 pt-6">
             <h1 className="text-lg lg:text-2xl font-bold">Dropdown Menu</h1>
             <Menu />
+            <HamburguerMenu />   
         </header>
      );
 }
